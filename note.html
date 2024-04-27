@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans:wdth,wght@62.5..100,100..900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="note.css">
+    <title>Eskuwelayout | Note</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navigationHeaderContainer">
+            <div class="header">
+                <span><a href="index.html"><img src="image/5.png" alt="" srcset="">skuwelayout</a></span>
+                <i class='bx bx-chevrons-left' onclick="exitNavigationHeaderContainer()"></i>
+            </div>
+            <div class="navigationHeader">
+                    <button onclick="showqQuizContainer()"><i class='bx bxs-file-plus'></i> Quizes</button>
+                    <button onclick="showNotesContainer()"><i class='bx bxs-home'></i> Notes</button>
+                    <button onclick="showNotes('','')"><i class='bx bxs-plus-circle'></i> Create Notes</button>
+                    <button onclick="showCalendarContainer()"><i class='bx bx-calendar'></i>Calendar</button>
+            </div>
+        </div>
+        <div class="navigationBodyContainer">
+            <div class="navigationsNotesContainer">
+                <ul id="navigationsNotesContainer">                    
+                </ul>
+            </div>
+            <div class="navigationFooterContainer">
+                <ul>
+                    <li onclick="showSettings()"><i class='bx bx-cog'></i> Settings & Developer</li>
+                    <!-- <li><i class='bx bx-trash'></i>Trash</li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="mainbody">
+        <div class="notesBodyContainer">
+            <div class="bodyNavigation">
+                <span class="leftSideNavigation" onclick="showNavigationHeaderContainer()"><i class='bx bx-menu'></i></span>
+                <div class="rigthSideNavigation">
+                    <span onclick="showTodoContainer()"><i class='bx bxs-edit'></i></span>
+                    <!-- <span onclick="showAiChatNavigation()"><i class='bx bx-brain'></i></span> -->
+                </div>
+            </div>
+            <div class="bodyStatistic">
+                <div class="numberNotesContainer">
+                    <span class="title">Notes:</span>
+                    <span class="content" id="numberNotes">0</span>
+                </div>
+                <div class="numberNotesContainer">
+                    <span class="title">To do:</span>
+                    <span class="content" id="numberTodo">0</span>
+                </div>
+                <div class="numberNotesContainer">
+                    <span class="title">Date</span>
+                    <span class="content" id="numberDate"></span>
+                </div>
+            </div>
+            <div class="titleContainer">Notes</div>
+            <div class="mainNotesContainer" id="mainNotesContainer">
+                
+            </div>
+
+            <div class="addingNotesButton" onclick="showNotes('','')"><i class='bx bx-plus'></i></div>
+        </div>
+
+        <div class="addingNotesBody">
+            <div class="addingNotesNavigation">
+                <span class="leftSideNavigation" id="addNotesExitButton"><i class='bx bx-chevrons-down'></i></span>
+                <div class="rigthSideNavigation">
+                    <span onclick="showTodoContainer()"><i class='bx bxs-edit'></i></span>
+                    <span onclick="showAddQuiz()"><i class='bx bxs-file-plus'></i></span>
+                    <!-- <span onclick="showAiChatNavigation()"><i class='bx bx-brain'></i></span> -->
+                </div>
+            </div>
+            <div class="addingNotesContainer">
+                <div class="noteTitle" id="addTitleNotes" contenteditable="true"></div>
+                <div class="contentNote" id="addContentNotes" contenteditable="true"></div>
+            </div>
+        </div>
+        
+
+        <!--Calendar Container-->
+        <section class="calendarSection">
+            <div class="bodyNavigation">
+                <span class="leftSideNavigation" onclick="showNavigationHeaderContainer()"><i class='bx bx-menu'></i></span>
+                <div class="rigthSideNavigation">
+                    <span onclick="showTodoContainer()"><i class='bx bxs-edit'></i></span>
+                    <!-- <span onclick="showAiChatNavigation()"><i class='bx bx-brain'></i></span> -->
+                </div>
+            </div>
+            <div class="calendarConatiner">
+                <div class="calendarNavigation">
+                    <button onclick="previousMonth()"><i class='bx bx-chevron-left'></i></button>
+                    <span id="monthYear"></span>
+                    <button onclick="nextMonth()"><i class='bx bx-chevron-right' ></i></button>
+                </div>
+    
+                <div class="calendar">
+
+                </div>
+            </div>
+            
+            <div class="listEventContainer">
+                <ul class="container" id="eventContainer">
+                    <li>No events for today.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!--Quiz Container-->
+        <section class="quizSection">
+            <div class="Quiz">
+                <div class="quizContainer">
+                    <div class="bodyNavigation">
+                        <span class="leftSideNavigation" onclick="showNavigationHeaderContainer()"><i class='bx bx-menu'></i></span>
+                        <div class="rigthSideNavigation">
+                            <span onclick="showTodoContainer()"><i class='bx bxs-edit'></i></span>
+                            <!-- <span onclick="showAiChatNavigation()"><i class='bx bx-brain'></i></span> -->
+                        </div>
+                    </div>
+                </div>
+                <h1 class="containerTitle">Quiz Time! <button class="addQuiz" onclick="showAddQuiz()">+</button></h1>
+                <div class="playingQuizContainer">
+                </div>
+            </div>
+            
+
+            <div class="addingQuizBody">
+                <div class="addingNotesNavigation">
+                    <div class="leftside">
+                         <span class="leftSideNavigation" onclick="showNavigationHeaderContainer()"><i class='bx bx-menu'></i></span>
+                        <span><i class='bx bx-chevrons-left' onclick="exitQuiz()"></i></span>
+                    </div>
+                   
+                    
+                    <div class="rigthSideNavigation">
+                        <span onclick="ShowAnswer()"><i class='bx bx-low-vision'></i></span>
+                        <span onclick="showTodoContainer()"><i class='bx bxs-edit'></i></span>
+                        <!-- <span onclick="showAiChatNavigation()"><i class='bx bx-brain'></i></span> -->
+                    </div>
+                </div>
+    
+                <div id="saved-quiz">
+                </div>
+                <div id="answer-quiz">
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!--Add Quiz Container-->
+    <aside class="addingQuizContainer">
+        <div class="todoNavigation">
+            <i class='bx bx-chevrons-right' onclick="exitAddQuiz()()"></i>
+            <span class="todoLits">Create Quiz</span>
+            <i></i>
+        </div>
+        <h1 class="quizTitles" contenteditable="true"></h1>
+        <span class="subTitle" contenteditable="true"></span>
+        <form id="quiz-form" action="">
+            <div id="quiz-container">
+                <div class="quizInput">
+                    <div>
+                        <label for="question">Question:</label>
+                        <input type="text" class="question" required>
+                    </div>
+                    <div>
+                        <label for="choice-a">Correct Answer:</label>
+                        <input type="text" class="choice correct" required>
+                    </div>
+                    <div>
+                        <label for="choice-b">Question Choice :</label>
+                        <input type="text" class="choice" required>
+                    </div>
+                    <div>
+                        <label for="choice-c">Question Choice :</label>
+                        <input type="text" class="choice" required>
+                    </div>
+                    <div>
+                        <label for="choice-d">Question Choice :</label>
+                        <input type="text" class="choice" required>
+                    </div>
+                </div>
+            </div>
+            <div class="addQuizButton">
+                <button onclick="addNewQuestion()">Add New Question</button>
+                <button type="button" class="save">Save Quiz</button>
+            </div>
+        </form>
+    </aside>
+
+    <!--Task Container-->
+    <aside class="todoContainer">
+        <div class="todoNavigation">
+            <i class='bx bx-chevrons-right' onclick="exitTodoContainer()"></i>
+            <span class="todoLits">Task</span>
+            <i></i>
+        </div>
+        <div class="topNavigation">
+            <div class="rateListContainer">
+                <button id="manageButton">Manage</button>
+                <button id="focusButton">Focus</button>
+                <button id="importantButton">Important</button>
+                <button id="allButton">All</button>
+            </div>
+            <div class="progress-circle" id="progressCircle">
+                <div class="progress-circle-inner" id="progressCircleInner"></div>
+                <div class="progress-text" id="progressText">0%</div>
+            </div>
+        </div>
+        <form id="todoForm">
+            <input type="text" id="taskInput" placeholder="Enter task" required>
+            <select id="categorySelect" required>
+                <option value="manage">Manage</option>
+                <option value="focus">Focus</option>
+                <option value="important">Important</option>
+            </select>
+            <input type="datetime-local" id="deadlineInput">
+            <div>
+                
+            </div>
+            <button type="submit">Add Task</button>
+        </form>
+            
+        <ul id="todoList"></ul>
+    </aside>
+    
+    
+    <!--AI Chat Container-->
+    <aside class="aiChatContainer" >
+        <div class="aiChatNavigation">
+            <i class='bx bx-chevrons-right' onclick="exitAiChatNavigation()"></i>
+            <span class="aiChatTitle">AI Chat</span>
+            <i></i>
+        </div>
+        <div class="messageContainer">
+            <ul class="chatbox">
+                <li class="chat incoming">
+                    <span><i class='bx bxs-ghost'></i></span>
+                    <p>Hi there <br> how can i help you today?</p>
+                </li>
+                
+            </ul>
+        </div>
+        <div class="chat-input">
+            <textarea placeholder="Enter a message..." required></textarea>
+            <span id="send-btn"><i class='bx bx-send' ></i></span>
+        </div>
+    </aside>
+
+
+
+
+
+    <!--Settings Container-->
+    <section class="settingContainer">
+        <div class="mainSettings">
+            <div class="navSettings">
+                <ul>
+                    <h1>About US</h1>
+                    <!-- <h1>User Settings</h1>
+                    <li onclick="showPersonal()">My Account</li>
+                    <hr> -->
+                    <a href="#aboutUs"><li onclick="showAboutUs()">Introduction</li></a>
+                    <!-- <a href="#cardsContainer"><li onclick="showAboutUs()">Developer</li></a> -->
+                    <a href="#contactUs"><li onclick="showAboutUs()">Contact Us</li></a>
+                </ul>
+            </div>
+            <!-- <div class="settingContent UserSettings">
+                <h1>Account Details</h1>
+                <div class="profile">
+                    <div class="dp"></div>
+                    <ul>
+                        <li>
+                            <span>Name:</span>
+                            <p>Gerald P. Manongdo</p>
+                        </li>
+                        <li>
+                            <span>Section:</span>
+                            <p>12-Ritchie</p>
+                        </li>
+                        <li>
+                            <span>Age:</span>
+                            <p>18 yrs old</p>
+                        </li>
+                        <li>
+                            <span>Email:</span>
+                            <p>ipoglang@depedqc.ph</p>
+                        </li>
+                        <li>
+                            <span>Phone Number:</span>
+                            <p>09996034433</p>
+                        </li>
+                    </ul>
+                </div>
+                <button>Delete Account</button>
+                <button class="logout">Log Out</button>
+            </div> -->
+            <div class="settingContent aboutUs" >
+                <h1 id="aboutUs">About Us</h1>
+                <p>We're a bunch of Grade 12 ICT students from Lagro High School, and we're all about using tech to help students who do a lot of self-study. Studying alone can be tricky, so we decided to build this website to lend a hand. Our goal is to make studying easier and more fun for everyone. Whether it's taking notes, getting help from our AI buddy, or keeping track of tasks, we've got your back. Join us on our mission to make self-studying a breeze!</p>
+                 <p>At the heart of our project is a simple idea: to make learning on your own as easy as possible. We've put together a range of tools and features to support students through their self-study journeys. From user-friendly note-taking to personalized AI assistance, our website is designed to make studying more manageable and rewarding. With our platform, we hope to inspire a new wave of confident, independent learners ready to take on any academic challenge.</p>               
+                 <!-- <h1 id="cardsContainer">Developer</h1>
+                <div class="cardsContainer" >
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                    <div class="card">
+                        <div class="image"><img src="image/gerald.png" alt=""></div>
+                        <h5 class="name">Gerald P. Manongdo
+                            <p class="position"> Developer</p>
+                        </h5>
+                    </div>
+                </div> -->
+                <h1 id="contactUs">Contact Us</h1>
+                <div class="contactUs" >
+                    <div>
+                        <span class="logo"><i class='bx bxs-navigation' ></i></span>
+                        <p>Locate us effortlessly with just a click of a button, ensuring you find our exact location without any hassle.</p>
+                        <button onclick="window.open('https://maps.app.goo.gl/fywcZZHedUbtWp3P8', '_blank')">View on Google Maps</button>
+
+
+                    </div>
+                    <div>
+                        <span class="logo"><i class='bx bxs-phone'></i></span>
+                        <p>Simply click the button to copy our number, making it quick and easy to reach out to us.</p>
+                        <button  onclick="copyPhoneNo()">Call Us</button>
+                    </div>
+                    <div>
+                        <span class="logo"><i class='bx bxs-envelope'></i></span>
+                        <p>Click the button to instantly copy our email address, simplifying the process of getting in touch with us.</p>
+                        <button onclick="copyEmail()">Email Us</button>
+                    </div>
+                </div>
+                <footer>
+                    <ul>
+                        <li>©2024 Eskulayout</li>
+                        <li>
+                            <a href="https://www.facebook.com/groups/834964029873999" target="_blank" rel="noopener noreferrer"><i class='bx bxl-facebook-circle'></i></a>
+                        </li>
+                    </ul>
+                </footer>
+            </div>
+
+            <span class="exitSettings" onclick="closeSettings()"><i class='bx bx-x'></i></span>
+        </div>
+    </section>
+
+
+    <script src="scirpt.js"></script>
+    <script src="ai.js"></script>
+    <script src="notes.js"></script>
+    <script src="todo.js"></script>
+    <script src="quiz.js"></script>
+    <script src="index.js"></script>
+    <!-- <script>
+        function clearLocalStorage() {
+            localStorage.clear();
+        }
+        clearLocalStorage();
+    </script> -->
+    
+</body>
+</html
